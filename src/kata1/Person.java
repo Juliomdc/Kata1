@@ -4,24 +4,26 @@
  */
 package kata1;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
  * @author usuario
  */
 public class Person {
-   private final Date birth;
+   private final Calendar birth;
    private String name;
    private String surname;
+   private final long MILLISECOND_PER_YEAR = (long) (1000*60*60*24*365.25);
 
-    public Person(Date birth, String name, String surname) {
+    public Person(Calendar birth, String name, String surname) {
         this.birth = birth;
         this.name = name;
         this.surname = surname;
     }
 
-    public Date getBirth() {
+    public Calendar getBirth() {
         return birth;
     }
 
@@ -47,9 +49,15 @@ public class Person {
     }
 
     public int getAge() {
-        Date today = new Date();
-        return (int)((today.getTime()-birth.getTime())/(1000*60*60*24*365.25));
+        Calendar today;
+        today= GregorianCalendar.getInstance();
+        return (int)(mimetodo(today.getTimeInMillis()-birth.getTimeInMillis()));
     }  
+    
+    private long mimetodo(long millis){
+        return millis / MILLISECOND_PER_YEAR;
+    }
+    
     
     
       
